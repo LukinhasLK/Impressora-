@@ -60,33 +60,68 @@ public class Main {
 
     public static void main(String[] args) throws java.io.IOException {
 
-        HashMap<String,String>LoginElgin = new HashMap<>();
+        HashMap<String, String> LoginElgin = new HashMap<>();
 
         boolean Login = false;
 
-        while(!Login){
+        while (!Login) {
 
             System.out.println("Seja Bem Vindo a o Login");
             System.out.println("=== 1 - Cadastro ===");
             System.out.println("=== 2 - Login ===");
             System.out.println("=== 3 - Sair === ");
             System.out.println("Escolha a opação :");
-            String opcao = input.nextLine();
+            int opcao = input.nextInt();
             input.nextLine();
 
-            switch (opcao){
+            switch (opcao) {
                 case 1:
-                    System.out.println("");
+                    System.out.println(" === Bem vindo no Cadastro === ");
+                    System.out.println("Crie um Login :");
+                    String LoginNovo = input.nextLine();
+
+                    System.out.println("Crie uma Senha :");
+                    String SenhaNovo = input.nextLine();
+
+                    if (LoginElgin.containsKey(LoginNovo)) {
+                        System.out.println("Login ja Existe ❌");
+                    } else {
+                        System.out.println("Login Realizado com Sucesso !!!");
+                        LoginElgin.put(LoginNovo, SenhaNovo);
+                        Login = false;
+                    }
+                    break;
+                case 2:
+                    System.out.println("Bem vindo a o Login ");
+
+                    System.out.println("Digite o Seu Login :");
+                    String User = input.nextLine();
+                    input.nextLine();
+
+                    System.out.println("Digite a Sua Senha :");
+                    String password = input.nextLine();
+
+                    if (LoginElgin.containsKey(User) && LoginElgin.get(User).equals(password)) {
+                        System.out.println("Login Realizado com Sucesso !!!");
+                        Login = false;
+
+                    } else {
+                        System.out.println("Login ou senha incorreto ❌");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Saindo ...... 🏃🏽");
+                    Login = false;
+                    break;
+
+                default:
+                    System.out.println("opcao invalida");
+                    break;
             }
         }
 
 
-
-
         exibirMenuLogin();
-
-
-
 
 
         while (true) {
