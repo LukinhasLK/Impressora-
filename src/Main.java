@@ -62,9 +62,9 @@ public class Main {
 
         HashMap<String, String> LoginElgin = new HashMap<>();
 
-        boolean Login = false;
+        boolean Login = true;
 
-        while (!Login) {
+        while (Login) {
 
             System.out.println("Seja Bem Vindo a o Login");
             System.out.println("=== 1 - Cadastro ===");
@@ -85,10 +85,11 @@ public class Main {
 
                     if (LoginElgin.containsKey(LoginNovo)) {
                         System.out.println("Login ja Existe ❌");
+
                     } else {
                         System.out.println("Login Realizado com Sucesso !!!");
                         LoginElgin.put(LoginNovo, SenhaNovo);
-                        Login = false;
+                        Login =false;
                     }
                     break;
                 case 2:
@@ -127,35 +128,11 @@ public class Main {
         while (true) {
             exibirMenuOpcoes();
 
-            String escolha = capturarEntrada("\nDigite a opÃ§Ã£o desejada: ");
+            String escolha = capturarEntrada("\nDigite a opção desejada: ");
 
-            if (escolha.equals("0")) {
-                // Fechar a conexÃ£o e sair
-                System.out.println("Programa encerrado.");
-                break;
-            } else if (escolha.equals("1")) {
-                // Chamar a funÃ§Ã£o de configurar a conexÃ£o (os alunos devem implementar)
-            } else if (escolha.equals("2")) {
-                // Chamar a funÃ§Ã£o de abrir a conexÃ£o (os alunos devem implementar)
-            } else if (escolha.equals("3")) {
-                // Chamar a funÃ§Ã£o de imprimir texto (os alunos devem implementar)
-            } else if (escolha.equals("4")) {
-                // Chamar a funÃ§Ã£o de imprimir QRCode (os alunos devem implementar)
-            } else if (escolha.equals("5")) {
-                // Chamar a funÃ§Ã£o de imprimir cÃ³digo de barras (os alunos devem implementar)
-            } else if (escolha.equals("6")) {
-                // Chamar a funÃ§Ã£o de imprimir XML SAT (os alunos devem implementar)
-            } else if (escolha.equals("7")) {
-                // Chamar a funÃ§Ã£o de imprimir XML Cancelamento SAT (os alunos devem implementar)
-            } else if (escolha.equals("8")) {
-                // Chamar a funÃ§Ã£o de abrir gaveta Elgin (os alunos devem implementar)
-            } else if (escolha.equals("9")) {
-                // Chamar a funÃ§Ã£o de abrir gaveta genÃ©rica (os alunos devem implementar)
-            } else if (escolha.equals("10")) {
-                // Chamar a funÃ§Ã£o de emitir sinal sonoro (os alunos devem implementar)
-            } else {
-                System.out.println("OpÃ§Ã£o invÃ¡lida. Tente novamente.");
-            }
+           switch (escolha){
+               case "1":
+           }
         }
 
     }
