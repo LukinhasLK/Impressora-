@@ -1,0 +1,35 @@
+<CFeCanc>
+    <infCFe Id="CFe131803142016060016599008100813024528803" chCanc="CFe131803142016060016599008100813024528803">
+        <ide>
+            <!-- Coloque aqui os dados de identificação -->
+        </ide>
+        <total>
+            <vCFe>3.00</vCFe>
+        </total>
+        <infAdic>
+            <obsFisco Campo="xCampo1">
+                <xTexto>xTexto1</xTexto>
+            </obsFisco>
+        </infAdic>
+    </infCFe>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315/" />
+            <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+            <Reference URI="#CFe131803142016060016599008100813024528803">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+                    <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315/" />
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+                <DigestValue>pePC0YfIU+b59qGayJj5J492D9fTVhgbHEqFLDULiwc=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>og35vUhe... (continua)</SignatureValue>
+        <KeyInfo>
+            <X509Data>
+                <X509Certificate>MIIFzT... (continua)</X509Certificate>
+            </X509Data>
+        </KeyInfo>
+    </Signature>
+</CFeCanc>

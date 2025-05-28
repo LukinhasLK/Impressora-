@@ -10,9 +10,40 @@ public class Main {
     public interface ImpressoraDLL extends Library {
 
         ImpressoraDLL INSTANCE = (ImpressoraDLL) Native.load (
-                "SEU-DIRETORIO/E1_Impressora01.dll", ImpressoraDLL.class); // Adicione o Caminho completo para a DLL
+                "/Users/Lucas/Documents/E1_Impressora01.dylib", ImpressoraDLL.class); // Adicione o Caminho completo para a DLL
 
+        int AbreConexaoImpressora(int tipo, String modelo, String conexao, int parametro);
 
+        int FechaConexaoImpressora();
+
+        // Impressão de texto: String, int, int, int
+        int ImpressaoTexto(String dados, int posicao, int estilo, int tamanho);
+
+        // Corte: int
+        int Corte(int avanco);
+
+        // Impressão de QR Code: String, int, int
+        int ImpressaoQRCode(String dados, int tamanho, int nivelCorrecao);
+
+        // Impressão de código de barras: int, String, int, int, int
+        int ImpressaoCodigoBarras(int tipo, String dados, int altura, int largura, int HRI);
+
+        // Avançar papel: int
+        int AvancaPapel(int linhas);
+
+        int AbreGavetaElgin();
+
+        // Abre gaveta: int, int, int
+        int AbreGaveta(int pino, int ti, int tf);
+
+        // Sinal sonoro: int, int, int
+        int SinalSonoro(int qtd, int tempoInicio, int tempoFim);
+
+        // Imprime XML SAT: String, int
+        int ImprimeXMLSAT(String dados, int param);
+
+        // Imprime XML Cancelamento SAT: String, String, int
+        int ImprimeXMLCancelamentoSAT(String dados, String assQRCode, int param);
 
     }
 
@@ -130,22 +161,52 @@ public class Main {
 
             String escolha = capturarEntrada("\nDigite a opção desejada: ");
 
-           switch (escolha){
-               case "1":
-                   System.out.println("Configurando conexao 🔧");
-                   break;
+            switch (escolha){
+                case "1":
+                    System.out.println("Configurando conexao 🔧");
+                    break;
 
-               case"2":
-                   System.out.println("Abrindo conexao ");
-                   break;
+                case"2":
+                    System.out.println("Abrindo conexao ");
+                    break;
 
-               case "3 ":
-                   System.out.println("Impriminto Texto ....");
-                   break;
+                case "3 ":
+                    System.out.println("Impriminto Texto ....");
+                    break;
 
-               case "4":
-                   System.out.println("")
-           }
+                case "4":
+                    System.out.println("Impressao QRCode ....");
+                    break;
+
+                case "5":
+                    System.out.println("Impressao Cod Barras .....");
+                    break;
+
+                case "6":
+                    System.out.println("Impressao XML SAT ....");
+                    break;
+
+                case "7":
+                    System.out.println("Impressao XML Canc SAT ....");
+                    break;
+
+                case "8":
+                    System.out.println("Abrir Gaveta Elgin ....");
+                    break;
+
+                case "9":
+                    System.out.println("Abrir Gaveta");
+                    break;
+
+                case "10":
+                    System.out.println("Sinal Sonoro");
+                    break;
+
+                case "11":
+                    System.out.println("Fechar Conexao e Sair");
+                    break;
+
+            }
         }
 
     }
