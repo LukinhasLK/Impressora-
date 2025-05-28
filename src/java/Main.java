@@ -1,5 +1,6 @@
 import com.sun.jna.Library;
 import com.sun.jna.Native;
+
 import java.util.Scanner;
 import java.util.HashMap;
 import java.nio.file.*;
@@ -9,7 +10,7 @@ public class Main {
 
     public interface ImpressoraDLL extends Library {
 
-        ImpressoraDLL INSTANCE = (ImpressoraDLL) Native.load (
+        ImpressoraDLL INSTANCE = (ImpressoraDLL) Native.load(
                 "/Users/Lucas/Documents/E1_Impressora01.dylib", ImpressoraDLL.class); // Adicione o Caminho completo para a DLL
 
         int AbreConexaoImpressora(int tipo, String modelo, String conexao, int parametro);
@@ -68,6 +69,55 @@ public class Main {
 
     }
 
+    public static void configurarConexao() {
+        if (!conexaoAberta) {
+            System.out.println("Digite o tipo de conexao (1 para USB, 2 para Serial, etc.): ");
+            tipo = input.nextInt(); // Lê o tipo de conexão como inteiro
+            input.nextLine(); // Consumir quebra de linha restante
+
+            System.out.println("Digite o modelo da impressora: ");
+            modelo = input.nextLine(); // Lê o modelo da impressora
+
+            System.out.println("Digite a porta de conexão (ex: USB): ");
+            conexao = input.nextLine(); // Lê a porta de conexão
+
+            System.out.println("Digite o parâmetro adicional (ex: 0 para padrão): ");
+            parametro = input.nextInt();
+            input.nextLine(); // Consumir quebra de linha restante
+
+            System.out.println("Parâmetros de conexão configurados com sucesso.");
+        } else {
+            System.out.println("Conexão já configurada. Pronta para uso.");
+        }
+
+    }
+
+    public static void abrirConexao() {
+        // Função para abrir a conexão com a impressora
+        if (!conexaoAberta) {
+            int retorno = ImpressoraDLL.INSTANCE.AbreConexaoImpressora(tipo, modelo, conexao, parametro);
+            if (retorno == 0) {
+                conexaoAberta = true;
+                System.out.println("Conexão aberta com sucesso.");
+            } else {
+                System.out.println("Erro ao abrir conexão. Código de erro: " + retorno);
+            }
+        } else {
+            System.out.println("Conexão já está aberta.");
+        }
+    }
+
+    public static void fecharConexao() {
+        if (conexaoAberta) {
+            ImpressoraDLL.INSTANCE.FechaConexaoImpressora();
+            conexaoAberta = false;
+            System.out.println("Conexão fechada.");
+        } else {
+            System.out.println("Nenhuma conexão aberta para fechar.");
+        }
+
+    }
+
 
     public static void exibirMenuOpcoes() {
         System.out.println("\n*************************************************");
@@ -88,6 +138,113 @@ public class Main {
         System.out.println("--------------------------------------");
     }
 
+    public static void ImpressaoTexto() {
+        if (conexaoAberta) {
+            ImpressoraDLL.INSTANCE.AvancaPapel(1);
+            ImpressoraDLL.INSTANCE.ImpressaoTexto("Teste de impressao", 1, 4, 0);
+            ImpressoraDLL.INSTANCE.AvancaPapel(2);
+            ImpressoraDLL.INSTANCE.Corte(5);
+        } else {
+            System.out.println("Erro: Conexão não está aberta.");
+        }
+    }
+
+
+    public static void ImpressaoQRCode(String dados, int tamanho, int nivelCorrecao) {
+
+        if (conexaoAberta == true) {
+            int retorno = ImpressoraDLL.INSTANCE.ImpressaoQRCode("TESTE LUKINHAS", 6, 4);
+            ImpressoraDLL.INSTANCE.Corte(5);
+            System.out.println("Impressao Realizada");
+        } else {
+            System.out.println("Conexão está fechada!");
+        }
+    }
+
+    public static void ImpressaoCodigoBarras() {
+        if (conexaoAberta) {
+            ImpressoraDLL.INSTANCE.AvancaPapel(3);
+            ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
+            ImpressoraDLL.INSTANCE.AvancaPapel(3);
+            ImpressoraDLL.INSTANCE.Corte(3);
+        } else {
+            System.out.println("Erro: Conexão não está aberta.");
+        }
+    }
+
+    public static void ImprimeXMLSAT(String dados, int parametro) {
+        if (conexaoAberta) {
+
+            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLSAT("path=/Users/ryan_goncalves/Downloads/Projeto Java/Projeto Java/XMLSAT.xml", 2);
+
+            if (retorno == 0) {
+                System.out.println("Impressão do Danfe SAT realizada com sucesso!");
+            } else {
+                System.out.println("Erro ao imprimir o Danfe SAT. Código de erro: " + retorno);
+            }
+
+            ImpressoraDLL.INSTANCE.AvancaPapel(1);
+            ImpressoraDLL.INSTANCE.Corte(5);
+        } else {
+
+            System.out.println("Erro: Conexão não está aberta.");
+        }
+    }
+
+
+    public static void ImprimeXMLCancelamentoSAT(String dados, String assQRCode, int param) {
+
+        if (conexaoAberta) {
+
+            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLCancelamentoSAT(dados, assQRCode, param);
+
+
+            if (retorno == 0) {
+                System.out.println("Impressão do Cancelamento SAT realizada com sucesso!");
+            } else {
+                System.out.println("Erro ao imprimir o Cancelamento SAT. Código de erro: " + retorno);
+            }
+
+
+            ImpressoraDLL.INSTANCE.Corte(3);
+        } else {
+
+            System.out.println("Erro: Conexão não está aberta.");
+        }
+    }
+
+
+    public static void SinalSonoro() {
+        if (conexaoAberta) {
+            ImpressoraDLL.INSTANCE.SinalSonoro(4, 50, 5);
+        } else {
+            System.out.println("Erro: Conexão não está aberta.");
+        }
+    }
+
+    public static void AbreGaveta() {
+        if (conexaoAberta) {
+            int retorno = ImpressoraDLL.INSTANCE.AbreGaveta(1, 50, 5);
+        } else {
+            System.out.println("Erro: Conexão não está aberta.");
+        }
+    }
+
+    public static void AbreGavetaElgin() {
+        if (conexaoAberta) {
+            ImpressoraDLL.INSTANCE.AbreGavetaElgin();
+        } else {
+            System.out.println("Erro: Conexão não está aberta.");
+        }
+    }
+
+    public static void AvancaPapel(int linhas) {
+        if (conexaoAberta) {
+            ImpressoraDLL.INSTANCE.AvancaPapel(3);
+        } else {
+            System.out.println("Erro: Conexão não está aberta.");
+        }
+    }
 
     public static void main(String[] args) throws java.io.IOException {
 
@@ -120,7 +277,7 @@ public class Main {
                     } else {
                         System.out.println("Login Realizado com Sucesso !!!");
                         LoginElgin.put(LoginNovo, SenhaNovo);
-                        Login =false;
+                        Login = false;
                     }
                     break;
                 case 2:
@@ -161,12 +318,12 @@ public class Main {
 
             String escolha = capturarEntrada("\nDigite a opção desejada: ");
 
-            switch (escolha){
+            switch (escolha) {
                 case "1":
                     System.out.println("Configurando conexao 🔧");
                     break;
 
-                case"2":
+                case "2":
                     System.out.println("Abrindo conexao ");
                     break;
 
@@ -210,4 +367,5 @@ public class Main {
         }
 
     }
+
 }
