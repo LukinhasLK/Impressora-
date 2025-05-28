@@ -132,6 +132,19 @@ public class Main {
 
            switch (escolha){
                case "1":
+                   System.out.println("Configurando conexao 🔧");
+                   break;
+
+               case"2":
+                   System.out.println("Abrindo conexao ");
+                   break;
+
+               case "3 ":
+                   System.out.println("Impriminto Texto ....");
+                   break;
+
+               case "4":
+                   System.out.println("")
            }
         }
 
