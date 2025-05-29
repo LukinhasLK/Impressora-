@@ -11,7 +11,7 @@ public class Main {
     public interface ImpressoraDLL extends Library {
 
         ImpressoraDLL INSTANCE = (ImpressoraDLL) Native.load(
-                "/Users/Lucas/Documents/E1_Impressora01.dylib", ImpressoraDLL.class); // Adicione o Caminho completo para a DLL
+                "/Users/lukinhas/Downloads/Exemplo Java 2/Bibliotecas E1 Impressora/x64/E1_Impressora01.dll", ImpressoraDLL.class); // Adicione o Caminho completo para a DLL
 
         int AbreConexaoImpressora(int tipo, String modelo, String conexao, int parametro);
 
@@ -175,7 +175,7 @@ public class Main {
     public static void ImprimeXMLSAT(String dados, int parametro) {
         if (conexaoAberta) {
 
-            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLSAT("path=/Users/ryan_goncalves/Downloads/Projeto Java/Projeto Java/XMLSAT.xml", 2);
+            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLSAT("/Users/lukinhas/Downloads/Exemplo Java 2/XMLSAT.xml", 2);
 
             if (retorno == 0) {
                 System.out.println("Impressão do Danfe SAT realizada com sucesso!");
@@ -336,7 +336,7 @@ public class Main {
 
                 case "4":
                     System.out.println("Impressao QRCode ....");
-                    ImpressaoQRCode("Teste Lukinhas e pedro ",6,4);
+                    ImpressaoQRCode("Teste Lukinhas e pedro ", 6, 4);
                     ImpressoraDLL.INSTANCE.Corte(5);
                     break;
 
@@ -351,12 +351,16 @@ public class Main {
 
                 case "6":
                     System.out.println("Impressao XML SAT ....");
-
+                    ImprimeXMLSAT("/Users/lukinhas/Downloads/Exemplo Java 2/XMLSAT.xml", 2);
                     break;
 
                 case "7":
-                    System.out.println("Impressao XML Canc SAT ....");
 
+                    String xmlCancelamento = "path=/Users/lukinhas/Downloads/ExemploJava2/CANC_SAT.xml";
+                    String assinaturaQRCode = "CFe352101301971610009355900085441300858291055306982"; // certifique-se de que está correta
+                    int param = 2; // USB
+
+                    ImprimeXMLCancelamentoSAT(xmlCancelamento, assinaturaQRCode, param);
                     break;
 
                 case "8":
