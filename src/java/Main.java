@@ -321,46 +321,62 @@ public class Main {
             switch (escolha) {
                 case "1":
                     System.out.println("Configurando conexao 🔧");
+                    configurarConexao();
                     break;
 
                 case "2":
                     System.out.println("Abrindo conexao ");
+                    abrirConexao();
                     break;
 
                 case "3 ":
                     System.out.println("Impriminto Texto ....");
+                    ImpressaoTexto();
                     break;
 
                 case "4":
                     System.out.println("Impressao QRCode ....");
+                    ImpressaoQRCode("Teste Lukinhas e pedro ",6,4);
+                    ImpressoraDLL.INSTANCE.Corte(5);
                     break;
 
                 case "5":
                     System.out.println("Impressao Cod Barras .....");
+                    ImpressaoCodigoBarras();
+                    ImpressoraDLL.INSTANCE.AvancaPapel(3);
+                    ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
+                    ImpressoraDLL.INSTANCE.AvancaPapel(3);
+                    ImpressoraDLL.INSTANCE.Corte(3);
                     break;
 
                 case "6":
                     System.out.println("Impressao XML SAT ....");
+
                     break;
 
                 case "7":
                     System.out.println("Impressao XML Canc SAT ....");
+
                     break;
 
                 case "8":
                     System.out.println("Abrir Gaveta Elgin ....");
+                    AbreGaveta();
                     break;
 
                 case "9":
                     System.out.println("Abrir Gaveta");
+                    AbreGaveta();
                     break;
 
                 case "10":
                     System.out.println("Sinal Sonoro");
+                    SinalSonoro();
                     break;
 
                 case "11":
                     System.out.println("Fechar Conexao e Sair");
+                    fecharConexao();
                     break;
 
             }
