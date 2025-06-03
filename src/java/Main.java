@@ -11,7 +11,7 @@ public class Main {
     public interface ImpressoraDLL extends Library {
 
         ImpressoraDLL INSTANCE = (ImpressoraDLL) Native.load(
-                "/Users/lukinhas/Downloads/Exemplo Java 2/Bibliotecas E1 Impressora/x64/E1_Impressora01.dll", ImpressoraDLL.class); // Adicione o Caminho completo para a DLL
+                "C:\\Users\\QWA\\eclipse-workspace\\Impressora-\\src\\E1_Impressora01.dll", ImpressoraDLL.class); // Adicione o Caminho completo para a DLL
 
         int AbreConexaoImpressora(int tipo, String modelo, String conexao, int parametro);
 
@@ -153,7 +153,7 @@ public class Main {
     public static void ImpressaoQRCode(String dados, int tamanho, int nivelCorrecao) {
 
         if (conexaoAberta == true) {
-            int retorno = ImpressoraDLL.INSTANCE.ImpressaoQRCode("TESTE LUKINHAS", 6, 4);
+            int retorno = ImpressoraDLL.INSTANCE.ImpressaoQRCode(dados, tamanho, nivelCorrecao);
             ImpressoraDLL.INSTANCE.Corte(5);
             System.out.println("Impressao Realizada");
         } else {
@@ -175,7 +175,7 @@ public class Main {
     public static void ImprimeXMLSAT(String dados, int parametro) {
         if (conexaoAberta) {
 
-            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLSAT("/Users/lukinhas/Downloads/Exemplo Java 2/XMLSAT.xml", 2);
+            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLSAT(dados, parametro);
 
             if (retorno == 0) {
                 System.out.println("Impressão do Danfe SAT realizada com sucesso!");
@@ -254,7 +254,7 @@ public class Main {
 
         while (Login) {
 
-            System.out.println("Seja Bem Vindo a o Login");
+            System.out.println("Seja Bem Vindo ao Login");
             System.out.println("=== 1 - Cadastro ===");
             System.out.println("=== 2 - Login ===");
             System.out.println("=== 3 - Sair === ");
@@ -285,7 +285,7 @@ public class Main {
 
                     System.out.println("Digite o Seu Login :");
                     String User = input.nextLine();
-                    input.nextLine();
+                    
 
                     System.out.println("Digite a Sua Senha :");
                     String password = input.nextLine();
@@ -329,7 +329,7 @@ public class Main {
                     abrirConexao();
                     break;
 
-                case "3 ":
+                case "3":
                     System.out.println("Impriminto Texto ....");
                     ImpressaoTexto();
                     break;
@@ -343,20 +343,20 @@ public class Main {
                 case "5":
                     System.out.println("Impressao Cod Barras .....");
                     ImpressaoCodigoBarras();
-                    ImpressoraDLL.INSTANCE.AvancaPapel(3);
-                    ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
-                    ImpressoraDLL.INSTANCE.AvancaPapel(3);
-                    ImpressoraDLL.INSTANCE.Corte(3);
+                    //ImpressoraDLL.INSTANCE.AvancaPapel(3);
+                    //ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
+                    //ImpressoraDLL.INSTANCE.AvancaPapel(3);
+                    //ImpressoraDLL.INSTANCE.Corte(3);
                     break;
 
                 case "6":
                     System.out.println("Impressao XML SAT ....");
-                    ImprimeXMLSAT("/Users/lukinhas/Downloads/Exemplo Java 2/XMLSAT.xml", 2);
+                    ImprimeXMLSAT("C:\\Users\\QWA\\eclipse-workspace\\Impressora-\\src\\java\\XMLSAT.xml", 2);
                     break;
 
                 case "7":
 
-                    String xmlCancelamento = "path=/Users/lukinhas/Downloads/ExemploJava2/CANC_SAT.xml";
+                    String xmlCancelamento = "C:\\Users\\QWA\\eclipse-workspace\\Impressora-\\src\\java\\CANC_SAT.xml";
                     String assinaturaQRCode = "CFe352101301971610009355900085441300858291055306982"; // certifique-se de que está correta
                     int param = 2; // USB
 
@@ -365,7 +365,7 @@ public class Main {
 
                 case "8":
                     System.out.println("Abrir Gaveta Elgin ....");
-                    AbreGaveta();
+                    AbreGavetaElgin();
                     break;
 
                 case "9":
@@ -378,9 +378,10 @@ public class Main {
                     SinalSonoro();
                     break;
 
-                case "11":
+                case "0":
                     System.out.println("Fechar Conexao e Sair");
                     fecharConexao();
+                    System.exit(0);
                     break;
 
             }

@@ -1,0 +1,21 @@
+[2025-06-03T13:14:07.473373100] Conexão aberta com impressora fake.
+[2025-06-03T13:14:34.439164100] Simulando avanço de papel: 1 linhas
+[2025-06-03T13:14:34.451343] Imprimindo texto: Teste de impressao (pos: 1, estilo: 4, tam: 0)
+[2025-06-03T13:14:34.452330700] Simulando avanço de papel: 2 linhas
+[2025-06-03T13:14:34.452330700] Simulando corte de papel com avanço: 5
+[2025-06-03T13:15:12.022149300] Simulando QRCode: Teste QRCode
+[2025-06-03T13:15:12.023196] Simulando corte de papel com avanço: 5
+[2025-06-03T13:15:16.643631800] Simulando avanço de papel: 3 linhas
+[2025-06-03T13:15:16.647139900] Simulando código de barras: {A012345678912
+[2025-06-03T13:15:16.647139900] Simulando avanço de papel: 3 linhas
+[2025-06-03T13:15:16.648648900] Simulando corte de papel com avanço: 3
+[2025-06-03T13:15:20.357895100] Simulando impressão de XML SAT do arquivo: XMLSAT.xml
+[2025-06-03T13:15:20.357895100] Simulando avanço de papel: 1 linhas
+[2025-06-03T13:15:20.358893900] Simulando corte de papel com avanço: 5
+[2025-06-03T13:15:21.996258500] Simulando cancelamento de SAT: CANC_SAT.xml | QRCode: QRCodeExemplo
+[2025-06-03T13:15:21.996258500] Simulando corte de papel com avanço: 3
+[2025-06-03T13:15:24.596835600] Simulando abertura de gaveta Elgin.
+[2025-06-03T13:15:27.642032100] Simulando abertura de gaveta Elgin.
+[2025-06-03T13:15:29.227407700] Simulando abertura de gaveta com pino=1, ti=50, tf=5
+[2025-06-03T13:15:37.128816300] Simulando sinal sonoro: 4x de 50ms
+[2025-06-03T13:15:55.696059800] Conexão fechada com impressora fake.
